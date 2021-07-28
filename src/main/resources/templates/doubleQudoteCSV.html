@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/layui.css}" media="all">
+    <script type="text/javascript" th:src="@{/jquery/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+</head>
+
+<body>
+    <button type="button" class="layui-btn layui-btn-sm" id="getFileButton" lay-event="getFileButton">
+        <i class="layui-icon">&#xe67c;</i>Upload
+    </button>
+</body>
+<script type="text/javascript">
+    layui.config({
+        base: '../../js/',
+        version: new Date().getTime()
+    }).use(['form', 'element', 'jquery', 'layer', 'table', 'element', 'upload', 'laydate', 'dropdown'], function () {
+        var table = layui.table,
+            $ = layui.jquery,
+            form = layui.form,
+            upload = layui.upload,
+            laydate = layui.laydate,
+            dropdown = layui.dropdown;
+
+        upload.render({
+            elem: '#getFileButton'
+            , accept: 'file'
+            , exts: 'csv'
+            , url: '../../uploadDoubleQudoteCSV'
+            ,
+            data: {
+                data1: 'here'
+            },
+            done: function (res) {
+                let { code, data, mesasge } = res;
+            }
+        });
+    });
+</script>
+
+</html>
